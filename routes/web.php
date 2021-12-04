@@ -1,5 +1,6 @@
 <?php
 
+//use App\Http\Controllers\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,6 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+Route::group([ 'namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function () {
+    Route::resource('posts', PostController::class)->names('blog.posts');
+});
